@@ -1,0 +1,26 @@
+{
+    "name" : "level-dump",
+    "version" : "0.0.0",
+    "description" : "Dumps all values and/or keys of a level db or a sublevel to the console.",
+    "main" : "level-dump.js",
+    "scripts" : {
+        "test" : "echo 'This is just a simple debugging tool and therefore has no tests'"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/thlorenz/level-dump.git"
+    },
+    "homepage" : "https://github.com/thlorenz/level-dump",
+    "dependencies" : {
+    },
+    "devDependencies" : {
+    },
+    "keywords": ["level", "leveldb", "dump", "print", "log", "console", "inspect", "db", "database" ] ,
+    "author" : {
+        "name" : "Thorsten Lorenz",
+        "email" : "thlorenz@gmx.de",
+        "url" : "http://thlorenz.com"
+    },
+    "license" : "MIT",
+    "engine" : { "node" : ">=0.6" }
+}
