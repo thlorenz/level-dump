@@ -9,7 +9,7 @@ function dump (keys, values, db, write, end) {
   }
 
   // don't blow up if neither write nor end were given, i.e. dump(db)
-  cb = cb || function () {}
+  cb = cb || function (err) { if (err) console.error(err); };
 
   db.createReadStream({ 
       keys   :  keys
