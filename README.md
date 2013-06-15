@@ -23,8 +23,26 @@ This comes in useful for testing for instance:
 var assert = require('assert');
 var dump = require('level-dump');
 
-dump.write = function (data) {
-  assert.deepEqual(data, 'what I expected'); 
-};
-dump(db);
+dump(
+    db 
+  , function write(data) {
+      assert.deepEqual(data, 'what I expected'); 
+    }
+  , function end(err) {
+      assert.notOk(err);
+    }
+  )
 ```
+
+## API
+
+***dump(db[, write, end])***
+
+***dump.{all,keys,values}(db[, write, end])***
+
+- `db` the leveldb instance, whose entries to dump
+- `write : function` called for every dumped value (default: `console.log`)
+- `end: function` called when all values have been dumped and/or an error occurred
+
+**Note:** when `write` is supplied, `end` needs to be as well. When only one function is supplied it will be treated as
+`end`.
