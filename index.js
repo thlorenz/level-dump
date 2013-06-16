@@ -1,6 +1,10 @@
 'use strict';
 
-function dump (keys, values, db, write, end) {
+function dump (range, keys, values, db, write, end) {
+  range = range || { }
+  range.start = typeof range.start === 'undefined'  ?  ''     : range.start;
+  range.end   = typeof range.end   === 'undefined'  ? '\xff'  : range.end;
+
   var cb;
   if (end) cb = end;
   else {
@@ -14,16 +18,20 @@ function dump (keys, values, db, write, end) {
   db.createReadStream({ 
       keys   :  keys
     , values :  values
-    , start :  ''
-    , end   :  '\xff'
+    , start  :  range.start
+    , end    :  range.end
   })
   .on('data', write)
   .on('error', cb) 
   .on('close', cb);
 }
 
-module.exports = 
-exports          =  dump.bind(null, true, true);
-exports.keys     =  dump.bind(null, true, false);
-exports.values   =  dump.bind(null, false, true);
-exports.all      =  exports ;
+module.exports    =
+exports             =  dump.bind(null, null, true, true);
+exports.keys        =  dump.bind(null, null, true, false);
+exports.values      =  dump.bind(null, null, false, true);
+exports.entries     =  exports;
+
+exports.allKeys     =  dump.bind(null, { end: '\xff\xff' }, true, false);
+exports.allValues   =  dump.bind(null, { end: '\xff\xff' }, false, true);
+exports.allEntries  =  dump.bind(null, { end: '\xff\xff' }, true, true);
