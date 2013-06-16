@@ -1,6 +1,6 @@
 {
   "name": "level-dump",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Dumps all values and/or keys of a level db or a sublevel to the console.",
   "main": "level-dump.js",
   "scripts": {
