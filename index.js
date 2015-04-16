@@ -15,14 +15,14 @@ function dump (range, keys, values, db, write, end) {
   // don't blow up if neither write nor end were given, i.e. dump(db)
   cb = cb || function (err) { if (err) console.error(err); };
 
-  db.createReadStream({ 
+  db.createReadStream({
       keys   :  keys
     , values :  values
     , start  :  range.start
     , end    :  range.end
   })
   .on('data', write)
-  .on('error', cb) 
+  .on('error', cb)
   .on('close', cb);
 }
 
@@ -35,3 +35,5 @@ exports.entries     =  exports;
 exports.allKeys     =  dump.bind(null, { end: '\xff\xff' }, true, false);
 exports.allValues   =  dump.bind(null, { end: '\xff\xff' }, false, true);
 exports.allEntries  =  dump.bind(null, { end: '\xff\xff' }, true, true);
+
+exports.raw         = dump;
