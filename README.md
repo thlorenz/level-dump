@@ -54,3 +54,18 @@ dump(
 ***dump.{allEntries,allKeys,allValues}(db[, write, end])***
 
 - same as above except if called on the root level db, it will include keys/values/entries of all sublevels
+
+## Command line
+
+### Install
+
+```bash
+npm install -g level-dump
+```
+
+### Usage
+
+```bash
+# print usage:
+level-dump -h
+```
