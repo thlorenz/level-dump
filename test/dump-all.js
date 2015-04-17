@@ -8,9 +8,10 @@ var test     =  require('tape')
 
 test('\n# dumping all root db dumps values and keys of entire db including sublevels', function (t) {
   t.plan(6)
-  var db = sublevel(level(null, { valueEncoding: 'utf8' }))
-    , sub1 = db.sublevel('sub1')   
-    , sub2 = db.sublevel('sub2')   
+  var db = level(null, { valueEncoding: 'utf8' })
+    , base = sublevel(db)
+    , sub1 = base.sublevel('sub1')
+    , sub2 = base.sublevel('sub2')
 
     sub1.put('sub1key1', 'sub1val1', function () {
       sub2.put('sub2key1', 'sub2val1', function () {
@@ -21,7 +22,7 @@ test('\n# dumping all root db dumps values and keys of entire db including suble
             , keys.push.bind(keys) 
             , function end(err) {
                 t.notOk(err, 'dump db keys ends without error')
-                t.deepEqual(keys, [ '\xffsub1\xffsub1key1', '\xffsub2\xffsub2key1' ], 'dump db keys, dumps keys of all sublevels')
+                t.deepEqual(keys, [ '!sub1!sub1key1', '!sub2!sub2key1' ], 'dump db keys, dumps keys of all sublevels')
               }
           )
         }()
@@ -47,8 +48,8 @@ test('\n# dumping all root db dumps values and keys of entire db including suble
                 t.notOk(err, 'dump db entries ends without error')
                 t.deepEqual(
                     entries
-                  , [ { key: '\xffsub1\xffsub1key1', value: 'sub1val1' }
-                    , { key: '\xffsub2\xffsub2key1', value: 'sub2val1' }
+                  , [ { key: '!sub1!sub1key1', value: 'sub1val1' }
+                    , { key: '!sub2!sub2key1', value: 'sub2val1' }
                     ]
                   , 'dump db entries, dumps entries of all sublevels'
                 )
