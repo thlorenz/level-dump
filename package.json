@@ -13,10 +13,10 @@
   "homepage": "https://github.com/thlorenz/level-dump",
   "dependencies": {},
   "devDependencies": {
-    "level-test": "~1.3.0",
-    "tape": "~1.0.4",
+    "level-sublevel": "~6.4.6",
+    "level-test": "~1.7.0",
     "tap": "~0.4.3",
-    "level-sublevel": "~4.7.0"
+    "tape": "~1.0.4"
   },
   "keywords": [
     "level",
