@@ -15,12 +15,12 @@
   },
   "homepage": "https://github.com/thlorenz/level-dump",
   "dependencies": {
-    "level": "~0.18.0",
+    "level": "~1.7.0",
     "minimist": "~1.1.1"
   },
   "devDependencies": {
-    "level-sublevel": "~6.4.6",
-    "level-test": "~1.7.0",
+    "level-sublevel": "~6.6.1",
+    "level-test": "~2.0.3",
     "tap": "~0.4.3",
     "tape": "~1.0.4"
   },
